@@ -9,7 +9,6 @@ output:
 ## Loading and preprocessing the data
 
 
-
 ```r
 activity <- read.csv("activity.csv")
 # libraries
