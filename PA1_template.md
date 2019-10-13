@@ -1,12 +1,12 @@
 ---
 title: "Reproducible Research: Peer Assessment 1"
 output: 
-  html_document:
-    keep_md: true
+  html_document: 
+    keep_md: yes
 ---
 
 
-## Loading and preprocessing the data
+### Loading and preprocessing the data
 
 
 ```r
@@ -43,7 +43,7 @@ library(dplyr)
 ## 
 ##     intersect, setdiff, setequal, union
 ```
-### Total no. of steps taken per day
+# 1.Total no. of steps taken per day
 
 
 ```r
@@ -152,7 +152,7 @@ median(StepsPerDay$Steps, na.rm=TRUE)
 ## [1] 10765
 ```
 
-# 2. Average daily activity pattern
+# 2.Average daily activity pattern
 
 
 ```r
@@ -167,7 +167,7 @@ h+geom_line(col="brown")+ggtitle("Average steps per time interval")+xlab("Time")
 
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
-## 5-min interval containing maximum no. of steps
+### 5-min interval containing maximum no. of steps
 
 ```r
 # table for dplyr
@@ -183,8 +183,8 @@ ST %>% select(time, steps) %>% filter(steps==max(ST$steps))
 ## 1  8.35  206.
 ```
 
-# 3. Imputing missing values
-## Total no. of missing values in the dataset
+# 3.Imputing missing values
+### Total no. of missing values in the dataset
 
 ```r
 # table for dplyr
@@ -200,7 +200,7 @@ ACT %>% filter(is.na(steps)) %>% summarize(missing_values = n())
 ## 1           2304
 ```
 
-## Filling in all the missing values in the dataset
+### Filling in all the missing values in the dataset
 
 
 ```r
@@ -208,7 +208,7 @@ ACT %>% filter(is.na(steps)) %>% summarize(missing_values = n())
 activity$CompleteSteps <- ifelse(is.na(activity$steps), round(StepsPerTime$steps[match(activity$interval, StepsPerTime$interval)],0), activity$steps)
 ```
 
-## New dataset with the missing data filled in
+### New dataset with the missing data filled in
 
 
 ```r
@@ -232,7 +232,7 @@ head(activityFull, n=10)
 ## 10     1       45 2012-10-01
 ```
 
-## Histogram for total no. of steps taken for each day 
+### Histogram for total no. of steps taken for each day 
 
 
 ```r
@@ -246,7 +246,7 @@ g+geom_histogram(boundary=0, binwidth=2500, col="darkblue", fill="lightblue")+gg
 
 ![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
-## Mean of total no. of steps taken per day
+### Mean of total no. of steps taken per day
 
 
 ```r
@@ -257,7 +257,7 @@ mean(StepsPerDayFull$Steps)
 ## [1] 10765.64
 ```
 
-## Median of total no. of steps taken per day
+### Median of total no. of steps taken per day
 
 
 ```r
@@ -268,7 +268,7 @@ median(StepsPerDayFull$Steps)
 ## [1] 10762
 ```
 
-# 4. Differences in activity patterns between weekdays and weekends
+# 4.Differences in activity patterns between weekdays and weekends
 
 
 ```r
@@ -296,7 +296,7 @@ head(activityFull, n=10)
 ## 10     1       45 2012-10-01 2012-10-01  Monday weekday
 ```
 
-## Making a plot for the above
+### Making a plot for the above
 
 
 ```r
